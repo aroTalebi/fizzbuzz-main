@@ -54,7 +54,9 @@ function Home() {
               id="number"
               placeholder="Enter number"
               name="number"
+              value={number}
               onChange={(e) => setNumber(e.target.value)}
+              onFocus={() => setNumber("")}
             />
             <small className="text-danger">
               {number && number < 0 ? EMPTY_RESULT_HINT : ""}
