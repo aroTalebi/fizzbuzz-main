@@ -32,6 +32,15 @@ function Home() {
     }
     setResults(newResults);
   };
+  
+  const submitFormWith = (e) => {
+    e.preventDefault();
+    setNumber(e.target.value)
+  };
+
+  const gainFocusOnInput = () => {
+    setNumber("");
+  };
 
   return (
     <>
@@ -55,8 +64,8 @@ function Home() {
               placeholder="Enter number"
               name="number"
               value={number}
-              onChange={(e) => setNumber(e.target.value)}
-              onFocus={() => setNumber("")}
+              onChange={submitFormWith}
+              onFocus={gainFocusOnInput}
             />
             <small className="text-danger">
               {number && number < 0 ? EMPTY_RESULT_HINT : ""}
@@ -70,7 +79,9 @@ function Home() {
           {results.length > 0 ? (
             <ul className="result list-group d-flex flex-row flex-wrap mt-3">
               {results.map((result) => (
-                <li key={result} className="list-group-item">{result}</li>
+                <li key={result} className="list-group-item">
+                  {result}
+                </li>
               ))}
             </ul>
           ) : (
