@@ -7,11 +7,11 @@ function Home() {
   const EMPTY_RESULT_HINT = "Bitte geben Sie eine Zahl größer als 0 ein";
 
   const [number, setNumber] = useState("");
-  const [inputValue, setInputValue] = useState("");
+  const [results, setResults] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const num = parseInt(inputValue);
+    const num = parseInt(number);
 
     if (num < 1) {
       setResults([]);
@@ -63,6 +63,17 @@ function Home() {
               Submit
             </button>
           </form>
+
+          {/* result */}
+          {results.length > 0 ? (
+            <ul className="result list-group d-flex flex-row flex-wrap mt-3">
+              {results.map((result) => (
+                <li key={result} className="list-group-item">{result}</li>
+              ))}
+            </ul>
+          ) : (
+            ""
+          )}
         </div>
       </main>
     </>
